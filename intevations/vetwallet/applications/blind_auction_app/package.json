@@ -1,0 +1,19 @@
+{
+  "name": "blind_auction",
+  "version": "1.0.0",
+  "description": "",
+  "main": "addToWallet.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=12",
+    "npm": ">=5"
+  },
+  "dependencies": {
+    "fabric-network": "^2.2.4",
+    "fabric-ca-client": "^2.2.4"
+  }
+}
