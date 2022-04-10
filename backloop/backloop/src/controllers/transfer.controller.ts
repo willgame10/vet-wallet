@@ -46,6 +46,24 @@ export class TransferController {
       return error;
     }
   }
+}
+export class RequestTransferController {
+  constructor(
+    // @service(FabricClient) private fabricClient: FabricClient
+  ) { }
+  @post('/fabric/api/v1/RequestTransfer', {
+    responses: {
+      '200': {
+        description: 'RequestTransfer',
+        content: {
+          'application/json': {
+            schema: getModelSchemaRef(RequestTransfer, {
+            })
+          }
+        },
+      },
+    },
+  })
   async RequestTransfer(@requestBody(RequestTransfer) request_transfer: RequestTransfer): Promise<any> {
     try {
       await fabricClient.connect(request_transfer.fabricUserName);
