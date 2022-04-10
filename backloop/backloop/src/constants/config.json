@@ -33,7 +33,7 @@
         "ssl-target-name-override": "orderer.example.com"
       },
       "tlsCACerts": {
-        "path": "../connections/fabric-dev/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt"
+        "path": "~/home/ubuntu/Desktop/backloop/backloop/src/connections/fabric-dev/ordererOrganizations/example.com/orderers/orderer.example.com/tls/ca.crt"
       }
     }
   },
@@ -44,7 +44,7 @@
         "ssl-target-name-override": "peer0.org1.example.com"
       },
       "tlsCACerts": {
-        "path": "../connections/fabric-dev/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem"
+        "path": "~/home/ubuntu/Desktop/backloop/backloop/src/connections/fabric-dev/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem"
       }
     },
     "peer0.org2.example.com": {
@@ -53,7 +53,7 @@
         "ssl-target-name-override": "peer0.org2.example.com"
       },
       "tlsCACerts": {
-        "path": "../connections/fabric-dev/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem"
+        "path": "~/home/ubuntu/Desktop/backloop/backloop/src/connections/fabric-dev/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem"
       }
     }
   },
@@ -62,7 +62,7 @@
       "url": "https://localhost:7054",
       "caName": "ca-org1",
       "tlsCACerts": {
-        "path": "../connections/fabric-dev/fabric-ca/org1/ca-cert.pem"
+        "path": "~/home/ubuntu/Desktop/backloop/backloop/src/connections/fabric-dev/fabric-ca/org1/ca-cert.pem"
       },
       "httpOptions": {
         "verify": false
@@ -72,7 +72,7 @@
       "url": "https://localhost:8054",
       "caName": "ca-org2",
       "tlsCACerts": {
-        "path": "../connections/fabric-dev/fabric-ca/org2/ca-cert.pem"
+        "path": "~/home/ubuntu/Desktop/backloop/backloop/src/connections/fabric-dev/fabric-ca/org2/ca-cert.pem"
       },
       "httpOptions": {
         "verify": false
@@ -82,7 +82,7 @@
       "url": "https://localhost:9054",
       "caName": "ca-orderer",
       "tlsCACerts": {
-        "path": "../connections/fabric-dev/fabric-ca/ordererOrg/ca-cert.pem"
+        "path": "~/home/ubuntu/Desktop/backloop/backloop/src/connections/fabric-dev/fabric-ca/ordererOrg/ca-cert.pem"
       },
       "httpOptions": {
         "verify": false

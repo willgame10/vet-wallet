@@ -13,12 +13,6 @@
 import {Entity, model, property} from '@loopback/repository';
 @model()
 export class Transfer extends Entity {
-  
-  @property({
-    type: 'string',
-    required: true,
-  })
-  fabricUserName: string;
 
   @property({
     type: 'string',
