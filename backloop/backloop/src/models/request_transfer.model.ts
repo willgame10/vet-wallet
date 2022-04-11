@@ -19,6 +19,18 @@ export class RequestTransfer extends Entity {
     required: true,
   })
   fabricUserName: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  to: string;
+
+  @property({
+    type: 'number',
+    required: true,
+  })
+  value: number;
   
   constructor(data?: Partial<RequestTransfer>) {
     super(data);

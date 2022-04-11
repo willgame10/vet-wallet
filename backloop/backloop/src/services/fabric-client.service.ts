@@ -87,6 +87,18 @@ export class FabricClient {
       throw new Error('Fabric Service couldn`t invoke chaincode function: ' + error);
     }
   }
+  async invokeTransfer(functionName: string, to: string, value: number): Promise<string> {
+    try {
+      let res;
+      console.log(TAG, "to", to,  "functionName", functionName, "value", value);
+      res = await this.contract.submitTransaction(functionName, to, value);
+      return res;
+    }
+    catch (error) {
+      console.log("Function invoke failed" + error);
+      throw new Error('Fabric Service couldn`t invoke chaincode function: ' + error);
+    }
+  }
   async getWallet(walletAccount: string): Promise<Wallet> {
     const walletPath = path.join(process.cwd(), 'wallet');
     const wallet = await Wallets.newFileSystemWallet(walletPath);
@@ -97,6 +109,17 @@ export class FabricClient {
     } catch (error: any) {
       console.error(TAG, `Failed to retrieve wallet for account ${walletAccount}: ${error}`);
       return error;
+    }
+  }
+  async getBalance(): Promise<string> {
+    try {
+      let res;
+      res = await this.contract.submitTransaction('ClientAccountBalance');
+      return res;
+    }
+    catch (error) {
+      console.log("Function invoke failed" + error);
+      throw new Error('Fabric Service couldn`t invoke chaincode function: ' + error);
     }
   }
 }
