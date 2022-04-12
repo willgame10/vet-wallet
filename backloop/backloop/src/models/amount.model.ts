@@ -18,13 +18,13 @@ export class Amount extends Entity {
     type: 'string',
     required: true,
     })
-    fabricUserName: any;
+    fabricUserName: string;
 
   @property({
     type: 'number',
     required: true,
   })
-  amount: any;
+  amount: number;
 
   
   constructor(data?: Partial<Amount>) {

@@ -38,7 +38,7 @@ export class FabricCAController {
   })
   user: User): Promise<any> {
     const result = await fabricCAClient.enrollAdmin(user.fabricUserName, user.password, FABRICORG);
-    console.log(TAG, "Register", result)
+    console.log(TAG, result)
     return result;
   }
 
@@ -60,7 +60,7 @@ export class FabricCAController {
   })
   user: User): Promise<any> {
     const result = await fabricCAClient.enrollUser(user.fabricUserName, user.password, FABRICORG);
-    console.log(TAG, "Register", result)
+    console.log(TAG, result)
     return result;
   }
 
@@ -82,7 +82,7 @@ export class FabricCAController {
   })
   user: User): Promise<any> {
     const result = await fabricCAClient.registerUser(user.fabricUserName, user.password, FABRICORG);
-    console.log(TAG, "Register", result)
+    console.log(TAG, result)
     return result;
   }
 
@@ -104,7 +104,7 @@ export class FabricCAController {
   })
   user: User): Promise<any> {
     const result = await fabricCAClient.registerAndEnrollUser(user.fabricUserName, user.password, FABRICORG);
-    console.log(TAG, "Register", result)
+    console.log(TAG, result)
     return result;
   }
 

@@ -20,7 +20,7 @@ import { FabricCAClient } from '../services/fabric-ca-client.service';
 import { Amount } from '../models/amount.model';
 
 const fabricClient = new FabricClient();
-const TAG = 'TransferController:';
+const TAG = 'erc20Controller:';
 
 export class erc20Controller {
   constructor(
@@ -59,7 +59,7 @@ export class erc20Controller {
     content: {'application/json': {schema: getModelSchemaRef(User, {}),},},}) user: User): Promise<any> {
     await fabricClient.connect(user.fabricUserName);
     const result = await fabricClient.getBalance();
-    console.log(TAG, "ClientAccountBalance", result)
+    console.log(TAG, result)
     return result;
   }
 
@@ -67,8 +67,8 @@ export class erc20Controller {
   async Mint(@requestBody({
     content: {'application/json': {schema: getModelSchemaRef(Amount, {}, ),},},}) amount: Amount): Promise<any> {
     await fabricClient.connect(amount.fabricUserName);
-    const result = await fabricClient.Mint(amount);
-    console.log(TAG, "Mint", result)
+    const result = await fabricClient.Mint(amount.amount);
+    console.log(TAG, result)
     return result;
   }
 

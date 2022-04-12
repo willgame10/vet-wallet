@@ -40,7 +40,7 @@ export class RequestTransferController {
       await fabricClient.connect(request_transfer.fabricUserName);
       console.log(TAG, "Connected. Invoking");
       const result = await fabricClient.invokeTransfer('Transfer', request_transfer.to, request_transfer.value);
-      console.log(TAG, "result" , result);
+      console.log(TAG, result);
       await fabricClient.disconnect();
     } catch (error) {
       return error;

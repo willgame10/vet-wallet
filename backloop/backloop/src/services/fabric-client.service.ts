@@ -12,6 +12,7 @@
  *******************************************************************************/
 import { Gateway, Wallet, Wallets } from 'fabric-network';
 import * as fs from 'fs';
+import { Amount } from '../models/amount.model';
 const path = require('path');
 const TAG = "FabricClient";
 export class FabricClient {
@@ -29,7 +30,7 @@ export class FabricClient {
   fabricClient: any;
   connected: boolean
   constructor() {
-    const caOrg1 = path.resolve(__dirname, '..', '/connections/fabric-dev/peerOrganizations/org1.example.com/tlsca', "tlsca.org1.exmple.com-cert.pem");
+    const caOrg1 = path.resolve(__dirname, '..', 'connections/fabric-dev/peerOrganizations/org1.example.com/tlsca', "tlsca.org1.exmple.com-cert.pem");
     this.org = caOrg1;
     console.log(TAG, "org", this.org);
   }
@@ -92,7 +93,7 @@ export class FabricClient {
       let res;
       console.log(TAG, "to", to,  "functionName", functionName, "value", value);
       res = await this.contract.submitTransaction(functionName, to, value);
-      return res;
+      return res.toString();
     }
     catch (error) {
       console.log("Function invoke failed" + error);
@@ -115,7 +116,7 @@ export class FabricClient {
     try {
       let res;
       res = await this.contract.submitTransaction('ClientAccountBalance');
-      return res;
+      return res.toString();
     }
     catch (error) {
       console.log("Function invoke failed" + error);
@@ -125,9 +126,9 @@ export class FabricClient {
   async Mint(amount : any): Promise<Amount> {
     try {
       let res;
-      res = await this.contract.submitTransaction('Mint');
-      console.log(TAG, "Minted ammount:", amount)
-      return res;
+      res = await this.contract.submitTransaction('Mint', amount);
+      console.log(TAG, "Minted amount:", amount)
+      return res.toString();
     }
     catch (error) {
       console.log("Function invoke failed" + error);
