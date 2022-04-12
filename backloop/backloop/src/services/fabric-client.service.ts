@@ -12,7 +12,6 @@
  *******************************************************************************/
 import { Gateway, Wallet, Wallets } from 'fabric-network';
 import * as fs from 'fs';
-import { Amount } from '../models/amount.model';
 const path = require('path');
 const TAG = "FabricClient";
 export class FabricClient {
