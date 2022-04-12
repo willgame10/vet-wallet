@@ -12,6 +12,7 @@
  *******************************************************************************/
 import { Gateway, Wallet, Wallets } from 'fabric-network';
 import * as fs from 'fs';
+import { Amount } from '../models/amount.model';
 const path = require('path');
 const TAG = "FabricClient";
 export class FabricClient {
@@ -29,7 +30,7 @@ export class FabricClient {
   fabricClient: any;
   connected: boolean
   constructor() {
-    const caOrg1 = path.resolve(__dirname, '..', '..', '..', '..', 'fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/tlsca', "tlsca.org1.exmple.com-cert.pem");
+    const caOrg1 = path.resolve(__dirname, '..', '/connections/fabric-dev/peerOrganizations/org1.example.com/tlsca', "tlsca.org1.exmple.com-cert.pem");
     this.org = caOrg1;
     console.log(TAG, "org", this.org);
   }
@@ -115,6 +116,18 @@ export class FabricClient {
     try {
       let res;
       res = await this.contract.submitTransaction('ClientAccountBalance');
+      return res;
+    }
+    catch (error) {
+      console.log("Function invoke failed" + error);
+      throw new Error('Fabric Service couldn`t invoke chaincode function: ' + error);
+    }
+  }
+  async Mint(amount : any): Promise<Amount> {
+    try {
+      let res;
+      res = await this.contract.submitTransaction('Mint');
+      console.log(TAG, "Minted ammount:", amount)
       return res;
     }
     catch (error) {
