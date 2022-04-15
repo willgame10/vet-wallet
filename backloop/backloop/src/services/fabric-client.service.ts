@@ -93,6 +93,7 @@ export class FabricClient {
     try {
       let res;
       console.log(TAG, "to", to,  "functionName", functionName, "value", value);
+      to = "x509::/OU=client/CN=" + to + "::/C=US/ST=North Carolina/L=Durham/O=org1.example.com/CN=ca.org1.example.com";
       res = await this.contract.submitTransaction(functionName, to, value);
       return res.toString();
     }
@@ -129,6 +130,17 @@ export class FabricClient {
       let res;
       res = await this.contract.submitTransaction('Mint', amount);
       console.log(TAG, "Minted amount:", amount)
+      return res.toString();
+    }
+    catch (error) {
+      console.log("Function invoke failed" + error);
+      throw new Error('Fabric Service couldn`t invoke chaincode function: ' + error);
+    }
+  }
+  async getClientAccountID(): Promise<string> {
+    try {
+      let res;
+      res = await this.contract.submitTransaction('ClientAccountID');
       return res.toString();
     }
     catch (error) {
