@@ -41,6 +41,7 @@ export class FabricClient {
     try {
       console.log(TAG, "Connecting As", userID);
       const wallet = await this.getWallet(userID);
+      console.log(TAG, 'wallet', wallet);
       // Create new gateway configuration for connecting to our peer node.
       const networkConfigPath = path.resolve(__dirname, '..', '..', 'src/constants', "config.json");
       const networkConfig = JSON.parse(fs.readFileSync(networkConfigPath, 'utf8'));

@@ -11,13 +11,9 @@
  *
  *******************************************************************************/
 import { post, requestBody, getModelSchemaRef } from '@loopback/rest';
-import { Transfer } from '../models/transfer.model';
-import { RequestTransfer } from '../models/request_transfer.model';
-import { service } from '@loopback/core';
 import { FabricClient } from '../services/fabric-client.service';
-import { User } from '../models';
-import { FabricCAClient } from '../services/fabric-ca-client.service';
 import { Amount } from '../models/amount.model';
+import { Balance } from '../models/balance.model';
 
 const fabricClient = new FabricClient();
 const TAG = 'erc20Controller:';
@@ -27,37 +23,11 @@ export class erc20Controller {
     //@service(FabricClient) private fabricClient: FabricClient
 
   ) { }
-  // @post('/fabric/api/v1/getBalance', {
-  //   responses: {
-  //     '200': {
-  //       description: 'getBalance',
-  //       content: {
-  //         'application/json': {
-  //           schema: getModelSchemaRef(RequestTransfer, {
-  //           })
-  //         }
-  //       },
-  //     },
-  //   },
-  // })
-
-  // async getBalance(@requestBody(RequestTransfer) request_transfer: RequestTransfer): Promise<any> {
-  //   try {
-  //     await fabricClient.connect(request_transfer.fabricUserName);
-  //     console.log(TAG, "Connected. retrieving balance");
-  //     const result = await fabricClient.getBalance();
-  //     console.log(TAG, "result" , result);
-  //     await fabricClient.disconnect();
-  //     return result
-  //   } catch (error) {
-  //     return error;
-  //   }
-  // }
  
-  @post('/user/api/v1/GetAccountBalance', {responses: {'200': {description: 'GetAccountBalance',content: { 'application/json': { schema: getModelSchemaRef(User) } },},},})
+  @post('/user/api/v1/GetAccountBalance', {responses: {'200': {description: 'GetAccountBalance',content: { 'application/json': { schema: getModelSchemaRef(Balance) } },},},})
   async GetAccountBalance(@requestBody({
-    content: {'application/json': {schema: getModelSchemaRef(User, {}),},},}) user: User): Promise<any> {
-    await fabricClient.connect(user.fabricUserName);
+    content: {'application/json': {schema: getModelSchemaRef(Balance, {}),},},}) balance: Balance): Promise<any> {
+    await fabricClient.connect(balance.fabricUserName);
     const result = await fabricClient.getBalance();
     console.log(TAG, result)
     return result;
