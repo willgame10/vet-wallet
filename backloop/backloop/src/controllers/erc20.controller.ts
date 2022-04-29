@@ -42,4 +42,13 @@ export class erc20Controller {
     return result;
   }
 
+  @post('/user/api/v1/GetID', {responses: {'200': {description: 'ID',content: { 'application/json': { schema: getModelSchemaRef(Balance) } },},},})
+  async Balance(@requestBody({
+    content: {'application/json': {schema: getModelSchemaRef(Balance, {}, ),},},}) balance: Balance): Promise<any> {
+    await fabricClient.connect(balance.fabricUserName);
+    const result = await fabricClient.getClientAccountID();
+    console.log(TAG, result)
+    return result;
+  }
+
 }
